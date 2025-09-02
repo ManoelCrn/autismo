@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transtorno do Espectro Autista - TEA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4A90E2;
+            --secondary: #7ED321;
+            --accent: #F5D547;
+            --light: #F0F8FF;
+            --dark: #2C3E50;
+            --text: #333;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #6FA8DC);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .puzzle-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        nav {
+            background-color: var(--dark);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 1rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            background-color: var(--primary);
+            color: var(--accent);
+        }
+        
+        section {
+            padding: 4rem 0;
+            background-color: white;
+            margin: 2rem 0;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            border-left: 5px solid var(--primary);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .myth-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .myth {
+            background-color: #fff5f5;
+            border-left: 5px solid #e53e3e;
+            padding: 1.5rem;
+            border-radius: 5px;
+        }
+        
+        .myth h4 {
+            color: #e53e3e;
+            margin-bottom: 0.5rem;
+        }
+        
+        .fact {
+            background-color: #f0fff4;
+            border-left: 5px solid var(--secondary);
+            padding: 1.5rem;
+            border-radius: 5px;
+        }
+        
+        .fact h4 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight {
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        footer p {
+            margin-bottom: 1rem;
+        }
+        
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .quote {
+            font-style: italic;
+            text-align: center;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: var(--light);
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary);
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            opacity: 0.3;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .stat-item {
+            flex: 1;
+            min-width: 150px;
+            padding: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .stat-text {
+            font-size: 1rem;
+            color: var(--text);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 0.3rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="puzzle-icon">
+                <i class="fas fa-puzzle-piece"></i>
+            </div>
+            <h1>Transtorno do Espectro Autista</h1>
+            <p>Compreendendo características, diagnóstico e inclusão</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#o-que-e">O que é?</a></li>
+                <li><a href="#caracteristicas">Características</a></li>
+                <li><a href="#causas-mitos">Causas e Mitos</a></li>
+                <li><a href="#diagnostico">Diagnóstico</a></li>
+                <li><a href="#inclusao">Inclusão</a></li>
+                <li><a href="#vida-adulta">Vida Adulta</a></li>
+                <li><a href="#conclusao">Conclusão</a></li>
+                <li><a href="#referencias">Referências</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <section id="o-que-e">
+            <h2 class="section-title">O que é Autismo?</h2>
+            <div class="quote">
+                "O Transtorno do Espectro Autista (TEA) é uma condição neurológica que afeta o desenvolvimento cerebral, impactando comunicação, interação social e comportamento. É um 'espectro' com variações de habilidades e desafios."
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">1-2%</div>
+                    <div class="stat-text">da população mundial</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4:1</div>
+                    <div class="stat-text">meninos para cada menina</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-text">genes associados</div>
+                </div>
+            </div>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3><i class="fas fa-brain"></i> Neurodiversidade</h3>
+                    <p>Não é doença, mas uma forma diferente de ser e perceber o mundo. Pessoas com autismo têm habilidades únicas e perspectivas valiosas.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-infinity"></i> Acompanhamento Vitalício</h3>
+                    <p>Manifesta-se na infância e acompanha a pessoa por toda a vida. Com apoio adequado, pessoas com TEA podem levar vidas plenas e produtivas.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-globe-americas"></i> Prevalência</h3>
+                    <p>Estima-se que 1 a 2% da população mundial esteja no espectro autista, segundo dados da Organização Mundial da Saúde (OMS).</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="caracteristicas">
+            <h2 class="section-title">Características do Espectro Autista</h2>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3><i class="fas fa-comments"></i> Comunicação e Interação Social</h3>
+                    <ul>
+                        <li>Dificuldade em manter conversas</li>
+                        <li>Desafio em interpretar gestos e expressões</li>
+                        <li>Preferência por atividades solitárias</li>
+                        <li>Dificuldade em compartilhar interesses</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-cogs"></i> Comportamentos e Interesses</h3>
+                    <ul>
+                        <li>Movimentos repetitivos (ex.: balançar mãos)</li>
+                        <li>Interesses restritos e intensos (ex.: números, trens)</li>
+                        <li>Resistência a mudanças na rotina</li>
+                        <li>Comportamentos ritualísticos</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-volume-up"></i> Sensibilidade Sensorial</h3>
+                    <ul>
+                        <li>Hiper ou hipossensibilidade (luz, som, texturas)</li>
+                        <li>Exemplo: Incômodo com barulhos altos</li>
+                        <li>Aversão a certos tecidos ou alimentos</li>
+                        <li>Fascinação por estímulos visuais</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="quote">
+                "Cada pessoa no espectro autista é única, com suas próprias habilidades, desafios e forma de interagir com o mundo."
+            </div>
+        </section>
+        
+        <section id="causas-mitos">
+            <h2 class="section-title">Causas e Mitos</h2>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3><i class="fas fa-dna"></i> Causas Comprovadas</h3>
+                    <p><span class="highlight">Genética</span>: Fator principal, com mais de 100 genes associados ao desenvolvimento do TEA.</p>
+                    <p><span class="highlight">Ambientais</span>: Interação entre genes e fatores pré-natais (ex.: infecções na gestação, complicações no parto).</p>
+                    <p>Não há uma única causa, mas uma combinação de fatores genéticos e ambientais.</p>
+                </div>
+            </div>
+            
+            <h3 style="text-align: center; margin: 2rem 0; color: var(--primary);">Mitos para Desconstruir</h3>
+            
+            <div class="myth-container">
+                <div class="myth">
+                    <h4>Mito: Vacinas causam autismo</h4>
+                    <p>Estudos científicos rigorosos já desmentiram completamente essa relação.</p>
+                </div>
+                <div class="fact">
+                    <h4>Fato: Não há ligação entre vacinas e TEA</h4>
+                    <p>A comunidade científica internacional é unânime em afirmar que vacinas são seguras e não causam autismo.</p>
+                </div>
+                
+                <div class="myth">
+                    <h4>Mito: Autismo é falta de educação</h4>
+                    <p>Algumas pessoas acreditam que comportamentos atípicos são resultado de má criação.</p>
+                </div>
+                <div class="fact">
+                    <h4>Fato: É uma condição neurológica</h4>
+                    <p>O TEA tem bases biológicas e não é causado por estilo de parentalidade ou ambiente social.</p>
+                </div>
+                
+                <div class="myth">
+                    <h4>Mito: Pessoas com autismo não têm emoções</h4>
+                    <p>Por causa das dificuldades de expressão, alguns acreditam que não sentem emoções.</p>
+                </div>
+                <div class="fact">
+                    <h4>Fato: Sentem, mas expressam de forma diferente</h4>
+                    <p>Pessoas no espectro experimentam emoções intensamente, mas podem ter dificuldade em expressá-las de forma convencional.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="diagnostico">
+            <h2 class="section-title">Diagnóstico e Intervenção</h2>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3><i class="fas fa-search"></i> Como é feito o diagnóstico?</h3>
+                    <ul>
+                        <li><strong>Avaliação multidisciplinar:</strong> Pediatra, neuropediatra, fonoaudiólogo, psicólogo</li>
+                        <li><strong>Critérios do DSM-5:</strong> Baseados em comportamentos observados</li>
+                        <li><strong>Idade:</strong> Sinais aparecem antes dos 3 anos, mas diagnóstico pode ser tardio</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-clock"></i> Importância da intervenção precoce</h3>
+                    <p>Terapias iniciadas cedo melhoram significativamente a qualidade de vida e o desenvolvimento de habilidades.</p>
+                    <ul>
+                        <li><strong>Terapias:</strong> ABA (Análise do Comportamento), fonoaudiologia, terapia ocupacional</li>
+                        <li><strong>Foco:</strong> Desenvolver comunicação, autonomia e habilidades sociais</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="quote">
+                "Quanto mais cedo o diagnóstico e a intervenção, maiores são as oportunidades de desenvolvimento e inclusão."
+            </div>
+        </section>
+        
+        <section id="inclusao">
+            <h2 class="section-title">Inclusão e Acessibilidade</h2>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3><i class="fas fa-school"></i> Na escola</h3>
+                    <ul>
+                        <li>Adaptações curriculares e mediadores</li>
+                        <li>Comunicação alternativa (PECS, LIBRAS)</li>
+                        <li>Ambiente sensorialmente amigável</li>
+                        <li>Formação de professores</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-briefcase"></i> No trabalho</h3>
+                    <ul>
+                        <li>Ambiente sensorialmente amigável</li>
+                        <li>Rotinas claras e instruções visuais</li>
+                        <li>Valorização de habilidades técnicas</li>
+                        <li>Programas de inclusão e mentoria</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-users"></i> Na sociedade</h3>
+                    <ul>
+                        <li>Campanhas de conscientização (Abril Azul)</li>
+                        <li>Espaços públicos acessíveis</li>
+                        <li>Respeito às diferenças</li>
+                        <li>Políticas públicas inclusivas</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="quote">
+                "Inclusão não é tolerância, é reconhecimento de que todos têm direito a participar plenamente da sociedade."
+            </div>
+        </section>
+        
+        <section id="vida-adulta">
+            <h2 class="section-title">Autismo na Vida Adulta</h2>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">16%</div>
+                    <div class="stat-text">de adultos com TEA têm emprego formal no Brasil</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">70%</div>
+                    <div class="stat-text">apresentam comorbidades como ansiedade</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">80%</div>
+                    <div class="stat-text">vivem com familiares na vida adulta</div>
+                </div>
+            </div>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3><i class="fas fa-chart-line"></i> Empregabilidade</h3>
+                    <p>Habilidades valorizadas no mercado de trabalho:</p>
+                    <ul>
+                        <li>Atenção a detalhes e precisão</li>
+                        <li>Pensamento lógico e sistemático</li>
+                        <li>Foco em tarefas específicas</li>
+                        <li>Honestidade e lealdade</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-home"></i> Vida independente</h3>
+                    <p>Varia conforme o suporte recebido:</p>
+                    <ul>
+                        <li>Terapias contínuas</li>
+                        <li>Rede de apoio</li>
+                        <li>Habilidades de vida diária</li>
+                        <li>Acessibilidade em moradias</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-heartbeat"></i> Saúde mental</h3>
+                    <p>Desafios comuns na vida adulta:</p>
+                    <ul>
+                        <li>Ansiedade e depressão</li>
+                        <li>Isolamento social</li>
+                        <li>Dificuldades de adaptação</li>
+                        <li>Falta de serviços especializados</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="conclusao">
+            <h2 class="section-title">Conclusão</h2>
+            
+            <div class="quote">
+                "Num mundo onde você pode ser qualquer coisa, seja gentil."
+                <br><small>- Autor desconhecido</small>
+            </div>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3><i class="fas fa-check-circle"></i> Autismo é diversidade</h3>
+                    <p>Não é deficiência, mas uma forma diferente de perceber e interagir com o mundo. Pessoas no espectro têm contribuições únicas para a sociedade.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-hands-helping"></i> Respeito às diferenças</h3>
+                    <p>O respeito e a aceitação das diferenças transformam vidas e constroem uma sociedade mais justa e inclusiva para todos.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-globe"></i> Inclusão beneficia a todos</h3>
+                    <p>A inclusão de pessoas com TEA não ajuda apenas elas, mas enriquece toda a sociedade com novas perspectivas e talentos.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="referencias">
+            <h2 class="section-title">Referências</h2>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3><i class="fas fa-book"></i> Fontes Científicas</h3>
+                    <ul>
+                        <li>Manual Diagnóstico e Estatístico de Transtornos Mentais (DSM-5)</li>
+                        <li>Organização Mundial da Saúde (OMS, 2023)</li>
+                        <li>Instituto Phorte (pesquisas brasileiras sobre TEA)</li>
+                        <li>Revista Brasileira de Psiquiatria</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-film"></i> Recursos Audiovisuais</h3>
+                    <ul>
+                        <li>Documentário "Temple Grandin" (2010)</li>
+                        <li>Documentário "O Pequeno Segredo" (2016)</li>
+                        <li>Série "Atypical" (Netflix)</li>
+                        <li>Vídeos do Instituto Phorte no YouTube</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-link"></i> Organizações</h3>
+                    <ul>
+                        <li>AMA - Associação de Amigos do Autista</li>
+                        <li>APAE - Associação de Pais e Amigos dos Excepcionais</li>
+                        <li>Federação Nacional das APAEs</li>
+                        <li>Autismo e Realidade</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>Site criado para disseminar informações sobre o Transtorno do Espectro Autista</p>
+            <p>Compartilhe este conhecimento e ajude a promover a inclusão</p>
+            <p>Desenvolvido por Manoel Rios | <a href="mailto:seu.email@exemplo.com">Contato</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        // Rolagem suave para seções
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Destacar seção ativa na navegação
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

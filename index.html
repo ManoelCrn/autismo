@@ -62,11 +62,35 @@
         
         nav {
             background-color: var(--dark);
-            padding: 1rem 0;
+            padding: 0;
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: var(--shadow);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 1rem 0;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 1rem 0;
         }
         
         nav ul {
@@ -74,6 +98,8 @@
             justify-content: center;
             list-style: none;
             flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
         }
         
         nav li {
@@ -84,14 +110,20 @@
             color: white;
             text-decoration: none;
             font-weight: 600;
-            padding: 0.5rem;
+            padding: 1rem 0.5rem;
             transition: all 0.3s;
             border-radius: 4px;
+            display: block;
         }
         
         nav a:hover {
             background-color: var(--primary);
             color: var(--accent);
+        }
+        
+        nav a.active {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
         }
         
         section {
@@ -262,6 +294,7 @@
             color: var(--text);
         }
         
+        /* Media Queries para dispositivos móveis */
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2.2rem;
@@ -271,13 +304,47 @@
                 font-size: 1.8rem;
             }
             
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-container {
+                padding: 0 15px;
+            }
+            
             nav ul {
+                display: none;
                 flex-direction: column;
-                align-items: center;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: var(--dark);
+                box-shadow: var(--shadow);
+            }
+            
+            nav ul.show {
+                display: flex;
             }
             
             nav li {
-                margin: 0.3rem 0;
+                margin: 0;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            nav a {
+                padding: 1rem;
+            }
+            
+            nav a:hover {
+                background-color: rgba(255,255,255,0.1);
+            }
+            
+            nav a.active {
+                border-bottom: none;
+                border-left: 3px solid var(--accent);
             }
         }
     </style>
@@ -294,8 +361,12 @@
     </header>
     
     <nav>
-        <div class="container">
-            <ul>
+        <div class="nav-container">
+            <div class="logo">TEA</div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul id="navMenu">
                 <li><a href="#o-que-e">O que é?</a></li>
                 <li><a href="#caracteristicas">Características</a></li>
                 <li><a href="#causas-mitos">Causas e Mitos</a></li>
@@ -608,11 +679,39 @@
         <div class="container">
             <p>Site criado para disseminar informações sobre o Transtorno do Espectro Autista</p>
             <p>Compartilhe este conhecimento e ajude a promover a inclusão</p>
-            <p>Desenvolvido por Manoel Rios | <a href="mailto:seu.email@exemplo.com">Contato</a></p>
+            <p>Desenvolvido por [Seu Nome] | <a href="mailto:seu.email@exemplo.com">Contato</a></p>
         </div>
     </footer>
     
     <script>
+        // Menu hambúrguer
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+            
+            // Mudar o ícone do menu
+            const icon = menuToggle.querySelector('i');
+            if (navMenu.classList.contains('show')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('show');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+        
         // Rolagem suave para seções
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -631,7 +730,7 @@
         // Destacar seção ativa na navegação
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('nav a');
+            const navLinks = document.querySelectorAll('#navMenu a');
             
             let current = '';
             
